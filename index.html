@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de Desarrollo - GitHub Enterprise</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    color:#f8fafc;
+    padding:40px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.header h1{
+    font-size:3rem;
+    background:linear-gradient(90deg,#38bdf8,#818cf8);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:15px;
+}
+
+.header p{
+    font-size:1.1rem;
+    color:#cbd5e1;
+}
+
+.section{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:20px;
+    padding:30px;
+    margin-bottom:30px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.3);
+    transition:0.3s;
+}
+
+.section:hover{
+    transform:translateY(-5px);
+}
+
+.section-title{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.section-number{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#38bdf8,#6366f1);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:1.3rem;
+    font-weight:bold;
+}
+
+.section-title h2{
+    font-size:1.7rem;
+}
+
+.card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+    margin-top:20px;
+}
+
+.card{
+    background:#1e293b;
+    border-left:5px solid #38bdf8;
+    padding:20px;
+    border-radius:15px;
+}
+
+.card h3{
+    color:#38bdf8;
+    margin-bottom:10px;
+}
+
+.list{
+    margin-top:10px;
+    padding-left:20px;
+}
+
+.list li{
+    margin-bottom:8px;
+}
+
+.code-box{
+    background:#0f172a;
+    padding:15px;
+    border-radius:12px;
+    margin-top:15px;
+    border:1px solid #334155;
+    font-family:Consolas, monospace;
+    color:#67e8f9;
+}
+
+.timeline{
+    position:relative;
+    margin-top:20px;
+    padding-left:40px;
+}
+
+.timeline::before{
+    content:'';
+    position:absolute;
+    left:12px;
+    top:0;
+    width:4px;
+    height:100%;
+    background:#38bdf8;
+}
+
+.timeline-item{
+    position:relative;
+    margin-bottom:25px;
+}
+
+.timeline-item::before{
+    content:'';
+    position:absolute;
+    left:-34px;
+    top:5px;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    background:#38bdf8;
+}
+
+.badge{
+    display:inline-block;
+    background:#38bdf8;
+    color:#0f172a;
+    font-weight:600;
+    padding:5px 12px;
+    border-radius:20px;
+    margin:5px;
+}
+
+.footer{
+    text-align:center;
+    margin-top:40px;
+    color:#94a3b8;
+    font-size:0.9rem;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🚀 Guía de Desarrollo</h1>
+        <p>Flujo de Trabajo GitHub Enterprise</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <div class="section-number">🎯</div>
+            <h2>Propósito</h2>
+        </div>
+
+        <p>
+            Establecer un proceso estándar para la gestión del código fuente,
+            garantizando trazabilidad, calidad y colaboración entre los miembros
+            del equipo de desarrollo.
+        </p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <div class="section-number">1</div>
+            <h2>Estrategia de Ramas</h2>
+        </div>
+
+        <div class="card-grid">
+
+            <div class="card">
+                <h3>📖 Descripción</h3>
+                <p>La estrategia de ramas define cómo se organiza el desarrollo dentro de GitHub Enterprise.</p>
+            </div>
+
+            <div class="card">
+                <h3>🎯 Objetivo</h3>
+                <p>Evitar conflictos entre desarrolladores y mantener estable la rama principal.</p>
+            </div>
+
+            <div class="card">
+                <h3>🌳 Estructura</h3>
+                <div class="badge">main</div>
+                <div class="badge">develop</div>
+                <div class="badge">feature/*</div>
+                <div class="badge">hotfix/*</div>
+            </div>
+
+        </div>
+
+        <div class="code-box">
+feature/login-biometrico<br>
+feature/prediccion-ahorro<br>
+hotfix/error-calculo-impuestos
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <div class="section-number">2</div>
+            <h2>Pull Requests y Revisiones</h2>
+        </div>
+
+        <div class="card-grid">
+
+            <div class="card">
+                <h3>📖 Descripción</h3>
+                <p>Todo cambio debe ser revisado antes de integrarse a la rama principal.</p>
+            </div>
+
+            <div class="card">
+                <h3>🎯 Objetivo</h3>
+                <p>Garantizar calidad y compartir conocimiento dentro del equipo.</p>
+            </div>
+
+            <div class="card">
+                <h3>✅ Reglas</h3>
+                <ul class="list">
+                    <li>No fusionar directamente a <b>main</b>.</li>
+                    <li>Mínimo una aprobación.</li>
+                    <li>Validaciones automáticas aprobadas.</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <strong>Pull Request</strong><br>
+                Implementación de módulo de recomendaciones inteligentes.
+            </div>
+
+            <div class="timeline-item">
+                <strong>Revisor</strong><br>
+                Desarrollador Senior.
+            </div>
+
+            <div class="timeline-item">
+                <strong>Resultado</strong><br>
+                Aprobado y fusionado a develop.
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <div class="section-number">3</div>
+            <h2>Convenciones de Commits</h2>
+        </div>
+
+        <div class="card">
+            <h3>📖 Descripción</h3>
+            <p>Los commits deben seguir una nomenclatura estándar.</p>
+        </div>
+
+        <div class="card-grid">
+
+            <div class="card">
+                <h3>🎯 Objetivo</h3>
+                <p>Facilitar el seguimiento histórico de cambios.</p>
+            </div>
+
+            <div class="card">
+                <h3>📝 Formato</h3>
+                <div class="code-box">
+tipo: descripción
+                </div>
+            </div>
+
+        </div>
+
+        <div class="code-box">
+feat: agregar módulo de autenticación<br>
+fix: corregir cálculo de saldo disponible<br>
+docs: actualizar documentación de API<br>
+refactor: optimizar consulta de usuarios
+        </div>
+
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <div class="section-number">4</div>
+            <h2>Gestión de Versiones</h2>
+        </div>
+
+        <div class="card-grid">
+
+            <div class="card">
+                <h3>📖 Descripción</h3>
+                <p>Cada liberación debe registrarse mediante etiquetas.</p>
+            </div>
+
+            <div class="card">
+                <h3>🎯 Objetivo</h3>
+                <p>Permitir rastrear fácilmente versiones desplegadas.</p>
+            </div>
+
+            <div class="card">
+                <h3>🏷️ Versiones</h3>
+                <div class="badge">v1.0.0</div>
+                <div class="badge">v1.1.0</div>
+                <div class="badge">v1.1.1</div>
+            </div>
+
+        </div>
+
+        <div class="card" style="margin-top:20px;">
+            <h3>📋 Registro de Liberación</h3>
+            <ul class="list">
+                <li>Fecha de liberación.</li>
+                <li>Responsable.</li>
+                <li>Funcionalidades incluidas.</li>
+                <li>Problemas corregidos.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        GitHub Enterprise Workflow • Documentación Oficial del Equipo de Desarrollo
+    </div>
+
+</div>
+
+</body>
+</html>
